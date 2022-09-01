@@ -1,14 +1,16 @@
-package com.example.termscheduler;
+package com.example.termscheduler.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.termscheduler.R;
+
+public class AssessmentAdd extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_assessment_add);
     }
 }
