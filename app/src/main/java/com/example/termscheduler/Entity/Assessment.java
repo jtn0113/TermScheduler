@@ -10,13 +10,15 @@ public class Assessment {
     @PrimaryKey(autoGenerate = true)
     private int assessmentID;
 
+    private String assessmentTitle;
     private String assessmentStart;
     private String assessmentEnd;
     private String assessmentType;
     private String assessmentCourseTitle;
 
-    public Assessment(int assessmentID, String assessmentStart, String assessmentEnd, String assessmentType, String assessmentCourseTitle) {
+    public Assessment(int assessmentID, String assessmentTitle, String assessmentStart, String assessmentEnd, String assessmentType, String assessmentCourseTitle) {
         this.assessmentID = assessmentID;
+        this.assessmentTitle = assessmentTitle;
         this.assessmentStart = assessmentStart;
         this.assessmentEnd = assessmentEnd;
         this.assessmentType = assessmentType;
@@ -29,6 +31,14 @@ public class Assessment {
 
     public void setAssessmentID(int assessmentID) {
         this.assessmentID = assessmentID;
+    }
+
+    public String getAssessmentTitle() {
+        return assessmentTitle;
+    }
+
+    public void setAssessmentTitle(String assessmentTitle) {
+        this.assessmentTitle = assessmentTitle;
     }
 
     public String getAssessmentStart() {
@@ -67,8 +77,9 @@ public class Assessment {
     public String toString() {
         return "Assessment{" +
                 "assessmentID=" + assessmentID +
-                ", assessmentStart=" + assessmentStart +
-                ", assessmentEnd=" + assessmentEnd +
+                ", assessmentTitle='" + assessmentTitle + '\'' +
+                ", assessmentStart='" + assessmentStart + '\'' +
+                ", assessmentEnd='" + assessmentEnd + '\'' +
                 ", assessmentType='" + assessmentType + '\'' +
                 ", assessmentCourseTitle='" + assessmentCourseTitle + '\'' +
                 '}';

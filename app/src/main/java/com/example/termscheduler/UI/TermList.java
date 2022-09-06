@@ -1,6 +1,8 @@
 package com.example.termscheduler.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +10,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.termscheduler.Database.Repository;
+import com.example.termscheduler.Entity.Term;
 import com.example.termscheduler.R;
+
+import java.util.List;
 
 public class TermList extends AppCompatActivity {
 
@@ -17,6 +23,13 @@ public class TermList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_term_list);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        RecyclerView recyclerView = findViewById(R.id.recyclerView001);
+        Repository repository = new Repository(getApplication());
+        List<Term> terms = repository.getAllTerms();
+        final TermAdapter adapter = new TermAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter.setTerms(terms);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
