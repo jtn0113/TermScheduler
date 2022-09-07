@@ -1,15 +1,21 @@
 package com.example.termscheduler.UI;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.termscheduler.Database.Repository;
+import com.example.termscheduler.Entity.Course;
 import com.example.termscheduler.Entity.Term;
 import com.example.termscheduler.R;
+
+import java.util.List;
 
 public class TermDetail extends AppCompatActivity {
     EditText editTitle;
@@ -35,23 +41,39 @@ public class TermDetail extends AppCompatActivity {
         editStart.setText(start);
         editEnd.setText(end);
         repository = new Repository(getApplication());
+
+        RecyclerView recyclerView = findViewById(R.id.activityDetailRecyclerView);
+        Repository repository = new Repository(getApplication());
+        List<Course> courses = repository.getAllFilteredCourses(title);
+        final CourseAdapter adapter = new CourseAdapter(this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter.setCourses(courses);
     }
 
     public void saveTerm(View view) {
         Term term;
-        term = new Term(termID, editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
-        repository.update(term);
+        if(TermAdd.isDate(editStart.getText().toString()) && TermAdd.isDate(editEnd.getText().toString())) {
+            term = new Term(termID, editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
+            repository.update(term);
 
-        Intent intent = new Intent(TermDetail.this, TermList.class);
-        startActivity(intent);
+            Intent intent = new Intent(TermDetail.this, TermList.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(TermDetail.this, "Invalid Date", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void deleteTerm(View view) {
         Term term;
         term = new Term(termID, editTitle.getText().toString(), editStart.getText().toString(), editEnd.getText().toString());
-        repository.delete(term);
 
-        Intent intent = new Intent(TermDetail.this, TermList.class);
-        startActivity(intent);
+        if(repository.getAllFilteredCourses(editTitle.getText().toString()).isEmpty()) {
+            repository.delete(term);
+            Intent intent = new Intent(TermDetail.this, TermList.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(TermDetail.this, "Can not delete term with courses associated", Toast.LENGTH_LONG).show();
+        }
     }
 }

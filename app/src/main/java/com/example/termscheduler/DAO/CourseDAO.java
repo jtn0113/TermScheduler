@@ -27,4 +27,10 @@ public interface CourseDAO {
 
     @Query("SELECT courseTitle FROM courses")
     List<String> getAllCourseTitles();
+
+    @Query("SELECT courseTermTitle FROM courses WHERE courseID = :courseID")
+    String getCourseTermTitle(int courseID);
+
+    @Query("SELECT * FROM courses WHERE courseTermTitle = :termTitle")
+    List<Course> getCoursesForTerm(String termTitle);
 }

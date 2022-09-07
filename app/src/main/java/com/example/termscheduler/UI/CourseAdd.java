@@ -74,12 +74,16 @@ public class CourseAdd extends AppCompatActivity {
         courseTerm = spinner.getSelectedItem().toString();
         notes = findViewById(R.id.addCourseNotes);
 
-        int newID = repository.getAllCourses().get(repository.getAllCourses().size() -1).getCourseID() + 1;
-        course = new Course(newID, title.getText().toString(), start.getText().toString(), end.getText().toString(), status.getText().toString(), instructorName.getText().toString(), instructorPhone.getText().toString(), instructorEmail.getText().toString(), courseTerm, notes.getText().toString());
-        repository.insert(course);
+        if(TermAdd.isDate(start.getText().toString()) && TermAdd.isDate(end.getText().toString())) {
+            int newID = repository.getAllCourses().get(repository.getAllCourses().size() - 1).getCourseID() + 1;
+            course = new Course(newID, title.getText().toString(), start.getText().toString(), end.getText().toString(), status.getText().toString(), instructorName.getText().toString(), instructorPhone.getText().toString(), instructorEmail.getText().toString(), courseTerm, notes.getText().toString());
+            repository.insert(course);
 
-        Intent intent = new Intent(CourseAdd.this, CourseList.class);
-        startActivity(intent);
+            Intent intent = new Intent(CourseAdd.this, CourseList.class);
+            startActivity(intent);
+        } else {
+            Toast.makeText(CourseAdd.this, "Invalid Date", Toast.LENGTH_LONG).show();
+        }
 
     }
 }

@@ -9,49 +9,54 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TermScheduler">
+        <receiver
+            android:name=".UI.MyReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
+
         <activity
             android:name=".UI.AssessmentDetail"
-            android:label="Assessment Detail"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Assessment Detail" />
         <activity
             android:name=".UI.AssessmentAdd"
-            android:label="Assessment Add"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Assessment Add" />
         <activity
             android:name=".UI.CourseDetail"
-            android:label="Course Detail"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Course Detail" />
         <activity
             android:name=".UI.CourseAdd"
-            android:label="Course Add"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Course Add" />
         <activity
             android:name=".UI.TermAdd"
-            android:label="Term Add"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Term Add" />
         <activity
             android:name=".UI.TermDetail"
-            android:label="Term Detail"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Term Detail" />
         <activity
             android:name=".UI.AssessmentList"
-            android:parentActivityName=".UI.MainActivity"
+            android:exported="false"
             android:label="Assessment List"
-            android:exported="false" />
+            android:parentActivityName=".UI.MainActivity" />
         <activity
             android:name=".UI.CourseList"
-            android:parentActivityName=".UI.MainActivity"
+            android:exported="false"
             android:label="Course List"
-            android:exported="false" />
+            android:parentActivityName=".UI.MainActivity" />
         <activity
             android:name=".UI.TermList"
-            android:parentActivityName=".UI.MainActivity"
+            android:exported="false"
             android:label="Term List"
-            android:exported="false" />
+            android:parentActivityName=".UI.MainActivity" />
         <activity
             android:name=".UI.MainActivity"
-            android:label="Welcome"
-            android:exported="true">
+            android:exported="true"
+            android:label="Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

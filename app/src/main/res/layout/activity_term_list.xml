@@ -22,7 +22,6 @@
         android:id="@+id/recyclerView001"
         android:layout_width="409dp"
         android:layout_height="668dp"
-        android:background="@color/teal_200"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp"
         app:layout_constraintLeft_toLeftOf="parent"

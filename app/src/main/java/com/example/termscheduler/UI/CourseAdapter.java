@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.termscheduler.DAO.CourseDAO;
+import com.example.termscheduler.Database.MyDatabaseBuilder;
+import com.example.termscheduler.Database.Repository;
 import com.example.termscheduler.Entity.Course;
 import com.example.termscheduler.R;
 
@@ -26,6 +29,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
+
                     final Course current = mCourses.get(position);
                     Intent intent = new Intent(context, CourseDetail.class);
                     intent.putExtra("id", current.getCourseID());
@@ -36,7 +40,8 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
                     intent.putExtra("instructor_name", current.getInstructorName());
                     intent.putExtra("instructor_phone", current.getInstructorPhone());
                     intent.putExtra("instructor_email", current.getInstructorEmail());
-                    intent.putExtra("course_term", current.getCourseTermTitle());
+//                    String termTitle = repository.getCourseTermTitle(current.getCourseID());
+//                    intent.putExtra("course_term", termTitle);
                     intent.putExtra("course_notes", current.getCourseNotes());
                     context.startActivity(intent);
                 }
@@ -44,6 +49,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         }
     }
     private List<Course> mCourses;
+    private List<String> mCoursesString;
     private final Context context;
     private final LayoutInflater mInflater;
     public CourseAdapter(Context context) {

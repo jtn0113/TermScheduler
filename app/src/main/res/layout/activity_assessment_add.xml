@@ -98,6 +98,7 @@
                     android:text="Type" />
 
                 <RadioGroup
+                    android:id="@+id/addAssessmentRadioGroup"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1">
@@ -106,6 +107,7 @@
                         android:id="@+id/addAssessmentOA"
                         android:layout_width="match_parent"
                         android:layout_height="34dp"
+                        android:checked="true"
                         android:text="OA" />
 
                     <RadioButton
@@ -141,6 +143,7 @@
                 android:id="@+id/addAssessmentButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="saveAssessment"
                 android:text="Save" />
         </LinearLayout>
     </ScrollView>
